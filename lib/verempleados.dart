@@ -1,63 +1,42 @@
 import 'package:flutter/material.dart';
 import 'diccionarioempleado.dart';
 
-class VerEmpleadosScreen extends StatelessWidget {
-  const VerEmpleadosScreen({Key? key}) : super(key: key);
+class VerEmpleados extends StatelessWidget {
+  const VerEmpleados({super.key}); // Constructor con key para quitar advertencia azul
 
   @override
   Widget build(BuildContext context) {
-    // Convertir los valores del diccionario a una lista
-    var empleados = datosempleado.values.toList();
-    
     return Scaffold(
+      backgroundColor: const Color(0xFF1A1A1A),
       appBar: AppBar(
-        title: const Text('Registros de Empleados', style: TextStyle(color: Colors.white)),
-        backgroundColor: Colors.teal,
-        iconTheme: const IconThemeData(color: Colors.white),
+        title: const Text("Lista de Empleados"),
+        backgroundColor: Colors.orange[800],
       ),
-      backgroundColor: Colors.grey.shade100,
-      body: empleados.isEmpty 
-          ? const Center(
-              child: Text(
-                'No hay empleados registrados aún.',
-                style: TextStyle(fontSize: 18, color: Colors.grey),
-              ),
-            )
-          : ListView.builder(
-              padding: const EdgeInsets.all(15),
-              itemCount: empleados.length,
-              itemBuilder: (context, index) {
-                var emp = empleados[index];
-                return Card(
-                  margin: const EdgeInsets.symmetric(vertical: 10),
-                  elevation: 4,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                  child: ListTile(
-                    contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                    leading: CircleAvatar(
-                      radius: 25,
-                      backgroundColor: Colors.teal.shade100,
-                      child: Text(
-                        '${emp.id}', 
-                        style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.teal, fontSize: 18)
-                      ),
-                    ),
-                    title: Text(
-                      emp.nombre,
-                      style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    subtitle: Padding(
-                      padding: const EdgeInsets.only(top: 8.0),
-                      child: Text(
-                        'Puesto: ${emp.puesto}\nSalario: \$${emp.salario.toStringAsFixed(2)}',
-                        style: TextStyle(fontSize: 15, color: Colors.grey.shade700, height: 1.4),
-                      ),
-                    ),
-                    isThreeLine: true,
+      body: datosEmpleado.isEmpty 
+        ? const Center(
+            child: Text("No hay empleados registrados", 
+            style: TextStyle(color: Colors.white)))
+        : ListView.builder(
+            itemCount: datosEmpleado.length,
+            itemBuilder: (context, index) {
+              int key = datosEmpleado.keys.elementAt(index);
+              var emp = datosEmpleado[key]!;
+              return Card(
+                color: const Color(0xFFE0E0E0),
+                margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
+                child: ListTile(
+                  leading: CircleAvatar(
+                    backgroundColor: Colors.orange[800], 
+                    child: Text("${emp.id}", style: const TextStyle(color: Colors.white))
                   ),
-                );
-              },
-            ),
+                  title: Text(emp.nombre, style: const TextStyle(fontWeight: FontWeight.bold)),
+                  subtitle: Text("Puesto: ${emp.puesto}"),
+                  trailing: Text("\$${emp.salario}", 
+                    style: TextStyle(color: Colors.green[800], fontWeight: FontWeight.bold)),
+                ),
+              );
+            },
+          ),
     );
   }
 }

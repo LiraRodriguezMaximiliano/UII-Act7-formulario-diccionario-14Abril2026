@@ -4,28 +4,24 @@ import 'capturaempleados.dart';
 import 'verempleados.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(FerreteriaApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class FerreteriaApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'App de Empleados',
+      title: 'Ferreteria el Patito',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        fontFamily: 'Roboto',
-        primarySwatch: Colors.indigo,
-        useMaterial3: true,
+        primarySwatch: Colors.orange,
       ),
-      // Configuración de rutas nombradas
+      // Definición de rutas nombradas
       initialRoute: '/',
       routes: {
-        '/': (context) => const InicioScreen(),
-        '/captura': (context) => const CapturaEmpleadosScreen(),
-        '/ver': (context) => const VerEmpleadosScreen(),
+        '/': (context) => Inicio(),
+        '/captura': (context) => CapturaEmpleados(),
+        '/ver': (context) => VerEmpleados(),
       },
     );
   }

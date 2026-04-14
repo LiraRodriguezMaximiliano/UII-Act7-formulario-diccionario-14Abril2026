@@ -1,6 +1,5 @@
 import 'claseempleado.dart';
 
-// Diccionario para almacenar los empleados y el contador de ID autonumérico
-Map<int, Empleado> datosempleado = {};
-int nextId = 1;
-
+// Diccionario (Map) vacío inicializado
+// La llave es el ID del empleado
+Map<int, Empleado> datosEmpleado = {};

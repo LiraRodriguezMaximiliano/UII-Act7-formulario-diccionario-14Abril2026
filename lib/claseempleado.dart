@@ -1,8 +1,8 @@
 class Empleado {
-  int id;
-  String nombre;
-  String puesto;
-  double salario;
+  final int id;
+  final String nombre;
+  final String puesto;
+  final double salario;
 
   Empleado({
     required this.id,
